@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>MoriaCalculator</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div class="vstack gap-3 pt-3 fixed-top bg-light">
+        <div class="container-fluid sum_info">
+            <div class="row gx-1 p-1 d-flex align-items-center" data-toggle="tooltip" data-placement="left" title="ΥΠΟΛΟΓΙΣΜΟΣ ΜΟΡΙΩΝ ΜΟΝΙΜΩΝ ΕΚΠΑΙΔΕΥΤΙΚΩΝ">
+                <div class="col-sm-4 d-flex justify-content-end">
+                    <h4>ΣΥΝΟΛΙΚΑ ΜΟΡΙΑ ΜΟΝΙΜΟΥ:</h4>
+                </div>
+                <div class="col-sm-1">
+                    <div class="alert alert-success total_moria" id="total_moria" role="alert">0</div>
+                </div>
+                <div class="col-sm-7">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        ΠΕΡΙΣΣΟΤΕΡΑ ΚΡΙΤΗΡΙΑ
+                    </button>
+                
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <div class="row bg-light d-flex justify-content-center">
+                                <div class="col-sm-3">
+                                    <input type="checkbox" class="entopiotita" id="entopiotita" name="entopiotita" value="0"><label for="entopiotita" class="entopiotita">ΕΝΤΟΠΙΟΤΗΤΑ</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="checkbox" class="gamos-xhreia" id="gamos-xhreia" name="gamos-xhreia" value="0"><label for="gamos-xhreia" class="gamos-xhreia">ΓΑΜΟΣ / ΧΗΡΕΙΑ</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="checkbox" class="synypiretisi" id="synypiretisi" name="synypiretisi" value="0"><label for="synypiretisi" class="synypiretisi">ΣΥΝΥΠΗΡΕΤΗΣΗ</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="col text-center form-group">
+                                        <!--<h6 class="text-center">ΠΑΙΔΙΑ:</h6>-->
+                                        <input type="number" class="form-control-sm w-25 paidia" id="paidia" name="paidia" min="0" max="25" value="0" step="1" placeholder="πληκτρολογήστε αριθμό παιδιών...">
+                                        <label for="paidia" class="paidia col-form-label-sm">ΠΑΙΔΙΑ</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal">ΚΡΙΤΗΡΙΑ</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Κλείσιμο">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul>
+                <li>2.5 μόρια για κάθε πλήρες 12μηνο προϋπηρεσίας</li>
+                <li>προστίθενται τα ΜΣΔ της Σχολικής Μονάδας</li>
+                <li>σε περίπτωση δυπρόσιτου σχολείου οι ΜΣΔ διπλασιάζονται. Αλλά όχι για τα έτη όταν ήταν Αναπληρωτής</li>
+                <li>σε περίπτωση λιγότερων μηνών από 12 τότε και το υπόλοιπο των ημέρων είναι >= 15 τότε προστίθεται ολόκληρος ο μήνας</li>
+                <li>σε περίπτωση Αναπληρωτή ΑΜΩ τότε γίνεται ποσοστιαία βάσει των ωρών</li>
+                <li>σε περίπτωση Αναπληρωτή γίνεται ποσοστιαία βάσει μηνών</li>
+                <li>σε περίπτωση Μόνιμου όπου πέτυχε την πρώτη επιλογή του σε μετάθεση τότε προστίθενται 2 μόρια για το έτος</li>
+                <li>έως 2 παιδιά 4 μόρια το κάθενα, 3ο παιδί 6 μόρια, για κάθε παιδί άνω των τριών 7 μόρια το καθένα</li>
+                <li>Εντοπιότητα • Γάμος/Χηρεία • Συνυπηρέτηση 4 μόρια</li>
+            </ul>
+            <div class="alert alert-warning" role="alert">Coming soon: ειδικές περιπτώσης αναπηρίας, ανήλικων τέκνων κλπ.</div>
+            
+            <p><a href="https://www.minedu.gov.gr/news/56768-12-10-23-egkyklioi-metatheseon-ekpaideftikon-avathmias-kai-vvathmias-ekpaidefsis" target="_blank" class="tooltip-test" title="ΕΓΚΥΚΛΙΟΣ ΜΕΤΑΘΕΣΕΩΝ">ΕΓΚΥΚΛΙΟΣ ΜΕΤΑΘΕΣΕΩΝ 🔗</a></p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Κλείσιμο</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container-fluid text-center bg-info border rounded border-light mt-4 school" id="school">
+        <div class="row gx-5 p-3">
+            <div class="col-sm-6 align-self-right"><span class="school-order"><i>συμπληρώστε πληροφορίες για το σχολείο</i></span>
+            </div>
+            <div class="col-sm-6 align-self-right">
+                <button id="remove_btn" class="btn btn-danger float-right" type="button">ΔΙΑΓΡΑΦΗ</button>
+            </div>
+        </div>
+        <div class="row p-1">
+            <div class="col d-flex justify-content-center">
+                <div class="alert alert-success school_total_moria" id="school_total_moria" role="alert">0
+                </div>
+            </div>
+        </div>
+        <div class="row gx-5 p-2 d-flex justify-content-center">
+            <div class="col-md-3 p-2">
+                <span><strong>ΕΤΟΣ:</strong></span>
+                <select class="form-select school_year" id="school_year" aria-label="Έτος">
+                </select>
+            </div>
+            <div class="col-md-3 p-2">
+                <span><strong>ΣΧΟΛΕΙΟ:</strong></span>
+                <input type="text" class="w-50 school_name" id="school_name" name="school_name" placeholder="πληκτρολογήστε όνομα σχολείου...">
+            </div>
+            <div class="col-md-3 p-2" data-toggle="tooltip" data-placement="top" title="10 έως 14 είναι δυσπρόσιτα">
+                <span><strong>ΜΣΔ:</strong></span>
+                <select class="form-select school_points" id="school_points" aria-label="Μόρια Σχολείου">
+                    <option selected value="1">1</option>
+                    <option value="2">2</option><option value="3">3</option>
+                    <option value="4">4</option><option value="5">5</option>
+                    <option value="6">6</option><option value="7">7</option>
+                    <option value="8">8</option><option value="9">9</option>
+                    <option value="10">10</option><option value="11">11</option>
+                    <option value="12">12</option><option value="13">13</option>
+                    <option value="14">14</option>
+                </select>
+            </div>
+            <div class="col-md-3 p-2">
+                <span><strong>ΩΡΕΣ</strong></span>
+                <select class="form-select hours_start" id="hours_start" aria-label="Από">
+                        <option selected value="23">23</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option><option value="3">3</option>
+                        <option value="4">4</option><option value="5">5</option>
+                        <option value="6">6</option><option value="7">7</option>
+                        <option value="8">8</option><option value="9">9</option>
+                        <option value="10">10</option><option value="11">11</option>
+                        <option value="12">12</option><option value="13">13</option>
+                        <option value="14">14</option><option value="15">15</option>
+                        <option value="16">16</option><option value="17">17</option>
+                        <option value="18">18</option><option value="19">19</option>
+                        <option value="20">20</option><option value="21">21</option>
+                        <option value="22">22</option><option value="23">23</option>
+                        <option value="24">24</option><option value="25">25</option>
+                        <option value="26">26</option><option value="27">27</option>
+                        <option value="28">28</option><option value="29">29</option>
+                        <option value="30">30</option>
+                </select>
+                <span> από τις </span>
+                <select class="form-select hours_end" id="hours_end" aria-label="έως" data-toggle="tooltip" data-placement="top" title="ΑΠΩ Π-βθμιας είναι 25, ΑΠΩ Δ-βθμιας 23 ώρες, ΑΠΩ ΚΕΔΑΣΥ 30 ώρες">
+                        <option selected value="23">23</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option><option value="3">3</option>
+                        <option value="4">4</option><option value="5">5</option>
+                        <option value="6">6</option><option value="7">7</option>
+                        <option value="8">8</option><option value="9">9</option>
+                        <option value="10">10</option><option value="11">11</option>
+                        <option value="12">12</option><option value="13">13</option>
+                        <option value="14">14</option><option value="15">15</option>
+                        <option value="16">16</option><option value="17">17</option>
+                        <option value="18">18</option><option value="19">19</option>
+                        <option value="20">20</option><option value="21">21</option>
+                        <option value="22">22</option><option value="23">23</option>
+                        <option value="24">24</option><option value="25">25</option>
+                        <option value="26">26</option><option value="27">27</option>
+                        <option value="28">28</option><option value="29">29</option>
+                        <option value="30">30</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="row gx-5 p-2 d-flex justify-content-sm-center">
+            <div class="col-md-4 p-2">
+                <span><strong>ΚΑΤΑΣΤΑΣΗ ΕΚΠΑΙΔΕΥΤΙΚΟΥ:</strong></span>
+                <select class="form-select when_diorismos" id="when_diorismos" aria-label="Κατάσταση Εκπαιδευτικού">
+                    <option selected value="ΜΟΝΙΜΟΣ">ΜΟΝΙΜΟΣ/-Η</option>
+                    <option value="ΑΝΑΠΛΗΡΩΤΗΣ">ΑΝΑΠΛΗΡΩΤΗΣ/-ΤΡΙΑ</option>
+                    <option value="ΩΡΟΜΙΣΘΙΟΣ">ΩΡΟΜΙΣΘΙΟΣ/-ΙΑ</option>
+                </select>
+            </div>
+            <div class="col-md-4 p-2">
+                <span><strong>ΜΗΝΕΣ:</strong></span>
+                <select class="form-select months" id="months" aria-label="Μήνες">
+                    <option selected value="1">12</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option><option value="3">3</option>
+                    <option value="4">4</option><option value="5">5</option>
+                    <option value="6">6</option><option value="7">7</option>
+                    <option value="8">8</option><option value="9">9</option>
+                    <option value="10">10</option><option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+            <div class="col-md-4 p-2">
+                <span><strong>ΥΠΟΛΟΙΠΟ ΗΜΕΡΩΝ:</strong></span>
+                <select class="form-select days" id="days" aria-label="Υπόλοιπο Ημερών Μήνα">
+                    <option selected value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option><option value="3">3</option>
+                    <option value="4">4</option><option value="5">5</option>
+                    <option value="6">6</option><option value="7">7</option>
+                    <option value="8">8</option><option value="9">9</option>
+                    <option value="10">10</option><option value="11">11</option>
+                    <option value="12">12</option><option value="13">13</option>
+                    <option value="14">14</option><option value="15">15</option>
+                    <option value="16">16</option><option value="17">17</option>
+                    <option value="18">18</option><option value="19">19</option>
+                    <option value="20">20</option><option value="21">21</option>
+                    <option value="22">22</option><option value="23">23</option>
+                    <option value="24">24</option><option value="25">25</option>
+                    <option value="26">26</option><option value="27">27</option>
+                    <option value="28">28</option><option value="29">29</option>
+                    <option value="30">30</option>
+                </select>
+            </div>
+        </div>
+        <div class="row gx-5">
+            <div class="col p-3">
+            </div>
+        </div>
+        
+        <div class="row bg-light p-2">
+            <div class="col">
+                <button id="add_btn" class="btn btn-success" type="button">ΠΡΟΣΘΗΚΗ ΠΡΟΫΠΗΡΕΣΙΑΣ (ΣΧΟΛΕΙΟ)
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid gx-5 p-3" id="credits">
+        <div class="row gx-5 bg-light d-flex justify-content-between">
+            <div class="col-sm-10 p-3">
+                <p>Made with ❤️ by <a href="https://giftakis.gr/ekpaideutikoi" target="_blank">Ιωάννης Γυφτάκης (ΠΕ86 - Πληροφορικής)</a></p>
+                <p>special thanks to <a href="https://swiy.co/savvas-pinakes" target="_blank">Σάββας Παπαδόπουλος (ΠΕ86)</a></p>
+            </div>
+            <div class="col-sm-2 p-1">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">ΚΡΙΤΗΡΙΑ
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            
+            let clone_counter = 1;
+            
+            let currentTime = new Date();
+            let year = currentTime.getFullYear();
+            
+            $("#school_year").append('<option selected value="' + year + '">' + year + '</option>');
+            for (var index = 1; index <= 35; index++) {
+                tmp_year = year - index
+                $('#school_year').append('<option value="' + tmp_year + '">' + tmp_year + '</option>');
+            }
+            
+            $("#add_btn").click(function(){
+                $('#school')
+                .clone(true,true)
+                .attr('id', 'school-'+ clone_counter++)
+                .insertAfter($('.school:last'))
+                .find("input[type='text']").val("");
+                
+                $('.school').each(function(i, elem) {
+                    $(this).find(".school-order").text("#"+ ++i);
+                });
+                
+                $(document).scrollTop($(document).height());
+            });    
+            
+            $("#remove_btn").on("click", function(event){
+                $( this ).closest('div.school').remove();
+            });
+            
+            $("#hours_start").on("click", function(event){
+                let hours_start_elem = $(event.target).closest('.school').find('#hours_start');
+                let hours_end_elem = $(event.target).closest('.school').find('#hours_end');
+                
+                let hours_start = hours_start_elem.val();
+                let hours_end = hours_end_elem.val();
+                
+                
+                if (hours_start > hours_end) {
+                    hours_start_elem.val(hours_end);
+                }
+            });
+            
+            
+            // $(document).on("change", function(event) {
+            $(document).on("change", "#months,#days,#school_points,#hours_start,#hours_end,#school_total_moria,input[type='checkbox'],input[type='text'],.when_diorismos,#paidia", function(event) {
+ 
+                // let div_school_uid = $(this).closest(".school").attr('id');
+                
+                let school_moria = 0;
+                
+                let months_elem = $(event.target).closest('.school').find('#months');
+                let days_elem = $(event.target).closest('.school').find('#days');
+                let school_points_elem = $(event.target).closest('.school').find('#school_points');
+                let before_diorismos_elem = $(event.target).closest('.school').find('#before_diorismos');
+                let after_diorismos_elem = $(event.target).closest('.school').find('#after_diorismos');
+                let when_diorismos_elem = $(event.target).closest('.school').find('#when_diorismos');
+                let hours_start_elem = $(event.target).closest('.school').find('#hours_start');
+                let hours_end_elem = $(event.target).closest('.school').find('#hours_end');
+                let first_choice_elem = $(event.target).closest('.school').find('#first_choice');
+                let entopiotita_elem = $('#entopiotita');
+                let gamos_xhreia_elem = $('#gamos-xhreia');
+                let synypiretisi_elem = $('#synypiretisi');
+                let paidia_elem = $('#paidia');
+                let school_total_moria_elem = $(event.target).closest('.school').find('#school_total_moria');
+                
+                let months = parseInt( months_elem.val() );
+                let days = parseInt( days_elem.val() );
+                let school_points = parseInt( school_points_elem.val() );
+                let months_mds = months;
+                
+                if (months < 12 && days > 14) {
+                    months_mds = months + 1;
+                } 
+                
+                // ΜΟΡΙΑ ΜΔΣ ΑΝΑΛΟΓΑ ΤΟΥΣ ΜΗΝΕΣ
+                let months_frac = months / 12;
+                let months_mds_frac = months_mds / 12;
+                let hours_frac = 1;
+                
+                if (when_diorismos_elem.val() == "ΑΝΑΠΛΗΡΩΤΗΣ") {
+                    first_choice_elem.prop("checked", false);
+                    first_choice_elem.prop("disabled", true);
+                    
+                    hours_frac = hours_start_elem.val() / hours_end_elem.val();
+            
+                    // ΑΜΩ
+                    if (hours_frac < 1) {
+                        months = months * hours_frac;
+                        months_mds = months_mds * hours_frac;
+                    }
+                    
+                    if (months >= 11) {
+                        months_elem.val(10);
+                    }
+                } 
+                if (when_diorismos_elem.val() == "ΜΟΝΙΜΟΣ") {
+                    first_choice_elem.prop("disabled", false);
+                    
+                    months_frac = 1;
+                    months_mds_frac = 1;
+                    hours_frac = 1;
+                    
+                    if (school_points >= 10) {
+                        school_points = school_points * 2;
+                    }
+                    
+                    if (first_choice_elem.is(":checked")) {
+                        school_moria = school_moria + 2;
+                    }
+                    
+                    // has to be done after ↖
+                    months_elem.val(12);
+                    hours_start_elem.val( hours_end_elem.val() );
+                }
+                school_moria += (months_frac * 2.5) + (school_points * months_mds_frac * hours_frac);
+                
+                school_total_moria_elem.text( Math.round(school_moria * 100) / 100 );
+                
+                
+                // TOTAL MORIA
+                let total_moria = 0;
+                
+                $('.school').each(function() {
+                    let tmp_school_total_moria = $(this).find(".school_total_moria").text();
+                    total_moria += parseFloat(tmp_school_total_moria);
+                });
+                
+                if (entopiotita_elem.is(":checked")){
+                    total_moria += 4;
+                }
+                if (gamos_xhreia_elem.is(":checked")){
+                    total_moria += 4;
+                }
+                if (synypiretisi_elem.is(":checked")){
+                    total_moria += 4;
+                }
+                
+                let paidia = parseInt(paidia_elem.val());
+                if (paidia <= 2) {
+                    total_moria += paidia*4;
+                } else if (paidia == 3) {
+                    total_moria += 2*4 + 6;
+                } else {
+                    total_moria += 2*4 + 6 + (paidia - 3)*7;
+                }
+                
+                $("#total_moria").text(Math.round(total_moria * 100) / 100 );
+
+            });
+            
+            
+            // tooltips everywhere
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
+            
+        });
+    </script>
+</body>
+
+</html>
