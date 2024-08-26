@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>MoriaCalculator</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 </head>
 
 <body>
     <div class="vstack gap-3 pt-3 fixed-top bg-light">
         <div class="container-fluid sum_info">
-            <div class="row gx-1 p-1 d-flex align-items-center" data-toggle="tooltip" data-placement="left" title="ΥΠΟΛΟΓΙΣΜΟΣ ΜΟΡΙΩΝ ΜΟΝΙΜΩΝ ΕΚΠΑΙΔΕΥΤΙΚΩΝ">
-                <div class="col-sm-4 d-flex justify-content-end">
+            <div class="row gx-1 p-1 d-flex align-items-bottom justify-content-center">
+                <div class="col-sm-3 d-flex justify-content-end">
                     <h4>ΣΥΝΟΛΙΚΑ ΜΟΡΙΑ ΜΟΝΙΜΟΥ:</h4>
                 </div>
                 <div class="col-sm-1">
@@ -21,12 +21,19 @@
                 </div>
                 <div class="col-sm-7">
                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        ΠΕΡΙΣΣΟΤΕΡΑ ΚΡΙΤΗΡΙΑ
+                        ΠΕΡΙΣΣΟΤΕΡΑ ΚΡΙΤΗΡΙΑ ▾
                     </button>
                 
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
                             <div class="row bg-light d-flex justify-content-center">
+                                <div class="col-sm-3">
+                                    <div class="col text-center form-group">
+                                        <!--<h6 class="text-center">ΠΑΙΔΙΑ:</h6>-->
+                                        <input type="number" class="form-control-sm w-25 paidia" id="paidia" name="paidia" min="0" max="25" value="0" step="1" placeholder="πληκτρολογήστε αριθμό παιδιών...">
+                                        <label for="paidia" class="paidia col-form-label-sm">ΠΑΙΔΙΑ</label>
+                                    </div>
+                                </div>
                                 <div class="col-sm-3">
                                     <input type="checkbox" class="entopiotita" id="entopiotita" name="entopiotita" value="0"><label for="entopiotita" class="entopiotita">ΕΝΤΟΠΙΟΤΗΤΑ</label>
                                 </div>
@@ -36,18 +43,13 @@
                                 <div class="col-sm-3">
                                     <input type="checkbox" class="synypiretisi" id="synypiretisi" name="synypiretisi" value="0"><label for="synypiretisi" class="synypiretisi">ΣΥΝΥΠΗΡΕΤΗΣΗ</label>
                                 </div>
-                                <div class="col-sm-3">
-                                    <div class="col text-center form-group">
-                                        <!--<h6 class="text-center">ΠΑΙΔΙΑ:</h6>-->
-                                        <input type="number" class="form-control-sm w-25 paidia" id="paidia" name="paidia" min="0" max="25" value="0" step="1" placeholder="πληκτρολογήστε αριθμό παιδιών...">
-                                        <label for="paidia" class="paidia col-form-label-sm">ΠΑΙΔΙΑ</label>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+                <div class="col-sm-1">
+                    <a href="https://www.youtube.com/watch?v=zzEPLxiqXyc" target="_blank">Οδηγός Χρήσης</a>
+                </div>
             </div>
         </div>
     </div>
@@ -86,7 +88,7 @@
       </div>
     </div>
     
-    <div class="container-fluid text-center bg-info border rounded border-light mt-4 school" id="school">
+    <div class="container-fluid text-center bg-info border rounded border-light mt-md-4 bootstrap-overrides school" id="school">
         <div class="row gx-5 p-3">
             <div class="col-sm-6 align-self-right"><span class="school-order"><i>συμπληρώστε πληροφορίες για το σχολείο</i></span>
             </div>
@@ -111,7 +113,7 @@
                 <input type="text" class="w-50 school_name" id="school_name" name="school_name" placeholder="πληκτρολογήστε όνομα σχολείου...">
             </div>
             <div class="col-md-3 p-2" data-toggle="tooltip" data-placement="top" title="10 έως 14 είναι δυσπρόσιτα">
-                <span><strong>ΜΣΔ:</strong></span>
+                <span><strong>ΜΟΡΙΑ ΣΧΟΛΙΚΗΣ ΜΟΝΑΔΑΣ:</strong></span>
                 <select class="form-select school_points" id="school_points" aria-label="Μόρια Σχολείου">
                     <option selected value="1">1</option>
                     <option value="2">2</option><option value="3">3</option>
@@ -145,7 +147,7 @@
                         <option value="30">30</option>
                 </select>
                 <span> από τις </span>
-                <select class="form-select hours_end" id="hours_end" aria-label="έως" data-toggle="tooltip" data-placement="top" title="ΑΠΩ Π-βθμιας είναι 25, ΑΠΩ Δ-βθμιας 23 ώρες, ΑΠΩ ΚΕΔΑΣΥ 30 ώρες">
+                <select class="form-select hours_end" id="hours_end" aria-label="έως" data-toggle="tooltip" data-placement="top" title="ΑΠΩ Δ-βθμιας 23 ώρες, ΑΠΩ Π-βθμιας είναι 24, ΑΠΩ ΚΕΔΑΣΥ 30 ώρες κλπ">
                         <option selected value="23">23</option>
                         <option value="1">1</option>
                         <option value="2">2</option><option value="3">3</option>
@@ -173,7 +175,7 @@
                 <select class="form-select when_diorismos" id="when_diorismos" aria-label="Κατάσταση Εκπαιδευτικού">
                     <option selected value="ΜΟΝΙΜΟΣ">ΜΟΝΙΜΟΣ/-Η</option>
                     <option value="ΑΝΑΠΛΗΡΩΤΗΣ">ΑΝΑΠΛΗΡΩΤΗΣ/-ΤΡΙΑ</option>
-                    <option value="ΩΡΟΜΙΣΘΙΟΣ">ΩΡΟΜΙΣΘΙΟΣ/-ΙΑ</option>
+                    <!--<option value="ΩΡΟΜΙΣΘΙΟΣ">ΩΡΟΜΙΣΘΙΟΣ/-ΙΑ</option>-->
                 </select>
             </div>
             <div class="col-md-4 p-2">
@@ -228,12 +230,13 @@
     <div class="container-fluid gx-5 p-3" id="credits">
         <div class="row gx-5 bg-light d-flex justify-content-between">
             <div class="col-sm-10 p-3">
-                <p>Made with ❤️ by <a href="https://giftakis.gr/ekpaideutikoi" target="_blank">Ιωάννης Γυφτάκης (ΠΕ86 - Πληροφορικής)</a></p>
+                <p>Developed with ❤️ by <a href="https://www.facebook.com/giannis.giftakis" target="_blank">Ιωάννης Γυφτάκης (ΠΕ86 Πληροφορικής)</a></p>
                 <p>special thanks to <a href="https://swiy.co/savvas-pinakes" target="_blank">Σάββας Παπαδόπουλος (ΠΕ86)</a></p>
             </div>
             <div class="col-sm-2 p-1">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">ΚΡΙΤΗΡΙΑ
                 </button>
+                <!--<button type="button" class="btn btn-secondary" id="test">TEST</button>-->
             </div>
         </div>
     </div>
@@ -241,37 +244,55 @@
     
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/html2canvas.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <script>
         $(document).ready(function(){
             
+            // counter id when cloning school 
             let clone_counter = 1;
             
+            // getting current year
             let currentTime = new Date();
             let year = currentTime.getFullYear();
             
+            // creating dropdown of years dynamically (current year until 35 years before)
             $("#school_year").append('<option selected value="' + year + '">' + year + '</option>');
             for (var index = 1; index <= 35; index++) {
                 tmp_year = year - index
                 $('#school_year').append('<option value="' + tmp_year + '">' + tmp_year + '</option>');
             }
             
-            $("#add_btn").click(function(){
+            // actions when ΠΡΟΣΘΗΚΗ ΠΡΟΫΠΗΡΕΣΙΑΣ is clicked
+            $("#add_btn").on("click", function(){
                 $('#school')
                 .clone(true,true)
                 .attr('id', 'school-'+ clone_counter++)
                 .insertAfter($('.school:last'))
                 .find("input[type='text']").val("");
                 
+                // alternating bg colour of schools for better readbility
                 $('.school').each(function(i, elem) {
                     $(this).find(".school-order").text("#"+ ++i);
+                    if (i % 2 == 0) {
+                        $(this).addClass("bg-warning");
+                    }
                 });
                 
+                // intiallizing school_total_moria to 0 when a schools is cloned
+                $(".school").find("#school_total_moria").last().text("0");
+                
+                // scroll to bottom when a school is cloned
                 $(document).scrollTop($(document).height());
             });    
             
             $("#remove_btn").on("click", function(event){
+                let tmp_school_total_moria = parseFloat( $(event.target).closest('.school').find('#school_total_moria').text() );
+                let total_moria_elem = $("#total_moria");
+                let tmp_total_moria = parseFloat(total_moria_elem.text());
+                total_moria_elem.text(Math.round((tmp_total_moria - tmp_school_total_moria) * 100) / 100);
+                
                 $( this ).closest('div.school').remove();
             });
             
@@ -289,8 +310,8 @@
             });
             
             
-            // $(document).on("change", function(event) {
-            $(document).on("change", "#months,#days,#school_points,#hours_start,#hours_end,#school_total_moria,input[type='checkbox'],input[type='text'],.when_diorismos,#paidia", function(event) {
+            // Calculating Moria in every change on below DOM elements 
+            $(document).on("change", "#months,#days,#school_points,#hours_start,#hours_end,.school_total_moria,input[type='checkbox'],input[type='text'],.when_diorismos,#paidia", function(event) {
  
                 // let div_school_uid = $(this).closest(".school").attr('id');
                 
@@ -316,11 +337,14 @@
                 let school_points = parseInt( school_points_elem.val() );
                 let months_mds = months;
                 
+                // *** Calculating criteria begins ***
+                
+                // adding a whole month if days remainder is > 14
                 if (months < 12 && days > 14) {
                     months_mds = months + 1;
                 } 
                 
-                // ΜΟΡΙΑ ΜΔΣ ΑΝΑΛΟΓΑ ΤΟΥΣ ΜΗΝΕΣ
+                // making helping vars
                 let months_frac = months / 12;
                 let months_mds_frac = months_mds / 12;
                 let hours_frac = 1;
@@ -337,8 +361,9 @@
                         months_mds = months_mds * hours_frac;
                     }
                     
-                    if (months >= 11) {
-                        months_elem.val(10);
+                    // set default 10 months when dropdown changed to ΑΝΑΠΛΗΡΩΤΗΣ
+                    if (months > 10) {
+                        months_elem.val("10");
                     }
                 } 
                 if (when_diorismos_elem.val() == "ΜΟΝΙΜΟΣ") {
@@ -348,24 +373,27 @@
                     months_mds_frac = 1;
                     hours_frac = 1;
                     
+                    // x2 for ΔΥΣΠΡΟΣΙΤΑ μονίμων ( μόρια σχολικής μονάδας >= 10)
                     if (school_points >= 10) {
                         school_points = school_points * 2;
                     }
                     
+                    // +2 μόρια όταν είναι η πρώτη του επιλογή μετάθεσης (για κάθε χρόνο που ήταν)
                     if (first_choice_elem.is(":checked")) {
                         school_moria = school_moria + 2;
                     }
                     
-                    // has to be done after ↖
+                    // setting default 12 on months when dropdown is changed to ΜΟΝΙΜΟΣ (has to be done last)
                     months_elem.val(12);
+                    // setting default hours_start same as hours_end to match
                     hours_start_elem.val( hours_end_elem.val() );
                 }
+                // υπολογισμός μορίων για εκείνη την χρονιά
                 school_moria += (months_frac * 2.5) + (school_points * months_mds_frac * hours_frac);
-                
                 school_total_moria_elem.text( Math.round(school_moria * 100) / 100 );
                 
                 
-                // TOTAL MORIA
+                // υπολογισμός συνολικών μορίων από όλες τις χρονιές - σχολεία
                 let total_moria = 0;
                 
                 $('.school').each(function() {
@@ -373,16 +401,20 @@
                     total_moria += parseFloat(tmp_school_total_moria);
                 });
                 
+                // Εντοπιότητα
                 if (entopiotita_elem.is(":checked")){
                     total_moria += 4;
                 }
+                // Γάμος - Χηρεία
                 if (gamos_xhreia_elem.is(":checked")){
                     total_moria += 4;
                 }
+                // Συνυπηρέτηση
                 if (synypiretisi_elem.is(":checked")){
                     total_moria += 4;
                 }
                 
+                // Παιδιά
                 let paidia = parseInt(paidia_elem.val());
                 if (paidia <= 2) {
                     total_moria += paidia*4;
@@ -401,6 +433,15 @@
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             });
+            
+            // $("#credits").on("click", function(event){
+            //     //html2canvas
+            //     html2canvas(document.querySelector(".school")).then(canvas => {
+            //         document.body.appendChild(canvas)
+            //     });
+            // });
+                        
+            
             
         });
     </script>
