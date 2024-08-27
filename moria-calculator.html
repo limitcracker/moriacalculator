@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>MoriaCalculator</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
     <div class="vstack gap-3 pt-3 fixed-top bg-light">
         <div class="container-fluid sum_info">
             <div class="row gx-1 p-1 d-flex align-items-bottom justify-content-center">
-                <div class="col-sm-3 d-flex justify-content-end">
+                <div class="col-sm-4 d-flex justify-content-end">
                     <h4>ΣΥΝΟΛΙΚΑ ΜΟΡΙΑ ΜΟΝΙΜΟΥ:</h4>
                 </div>
                 <div class="col-sm-1">
@@ -46,9 +46,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-1">
-                    <a href="https://www.youtube.com/watch?v=zzEPLxiqXyc" target="_blank">Οδηγός Χρήσης</a>
                 </div>
             </div>
         </div>
@@ -88,20 +85,19 @@
       </div>
     </div>
     
-    <div class="container-fluid text-center bg-info border rounded border-light mt-md-4 bootstrap-overrides school" id="school">
-        <div class="row gx-5 p-3">
-            <div class="col-sm-6 align-self-right"><span class="school-order"><i>συμπληρώστε πληροφορίες για το σχολείο</i></span>
+    <div class="container-fluid text-center bg-info border rounded border-light mt-sm-50 bootstrap-overrides school" id="school">
+        <div class="row gx-5 p-3 d-flex justify-content-center">
+            <div class="col-sm-5"><span class="school-order"><i>συμπληρώστε πληροφορίες για το σχολείο</i></span>
             </div>
-            <div class="col-sm-6 align-self-right">
-                <button id="remove_btn" class="btn btn-danger float-right" type="button">ΔΙΑΓΡΑΦΗ</button>
-            </div>
-        </div>
-        <div class="row p-1">
-            <div class="col d-flex justify-content-center">
+            <div class="col-sm-2">
                 <div class="alert alert-success school_total_moria" id="school_total_moria" role="alert">0
                 </div>
             </div>
+            <div class="col-sm-5">
+                <button id="remove_btn" class="btn btn-danger float-right" type="button">ΔΙΑΓΡΑΦΗ</button>
+            </div>
         </div>
+
         <div class="row gx-5 p-2 d-flex justify-content-center">
             <div class="col-md-3 p-2">
                 <span><strong>ΕΤΟΣ:</strong></span>
@@ -121,7 +117,8 @@
                     <option value="6">6</option><option value="7">7</option>
                     <option value="8">8</option><option value="9">9</option>
                     <option value="10">10</option><option value="11">11</option>
-                    <option value="12">12</option><option value="13">13</option>
+                    <option value="12">12</option>
+                    <!--<option value="13">13</option>-->
                     <option value="14">14</option>
                 </select>
             </div>
@@ -172,13 +169,13 @@
         <div class="row gx-5 p-2 d-flex justify-content-sm-center">
             <div class="col-md-4 p-2">
                 <span><strong>ΚΑΤΑΣΤΑΣΗ ΕΚΠΑΙΔΕΥΤΙΚΟΥ:</strong></span>
-                <select class="form-select when_diorismos" id="when_diorismos" aria-label="Κατάσταση Εκπαιδευτικού">
+                <select class="form-select when_diorismos" id="when_diorismos" aria-label="Κατάσταση Εκπαιδευτικού" name="when_diorismos">
                     <option selected value="ΜΟΝΙΜΟΣ">ΜΟΝΙΜΟΣ/-Η</option>
                     <option value="ΑΝΑΠΛΗΡΩΤΗΣ">ΑΝΑΠΛΗΡΩΤΗΣ/-ΤΡΙΑ</option>
                     <!--<option value="ΩΡΟΜΙΣΘΙΟΣ">ΩΡΟΜΙΣΘΙΟΣ/-ΙΑ</option>-->
                 </select>
             </div>
-            <div class="col-md-4 p-2">
+            <div class="col-md-2 p-2">
                 <span><strong>ΜΗΝΕΣ:</strong></span>
                 <select class="form-select months" id="months" aria-label="Μήνες">
                     <option selected value="1">12</option>
@@ -191,7 +188,7 @@
                     <option value="12">12</option>
                 </select>
             </div>
-            <div class="col-md-4 p-2">
+            <div class="col-md-3 p-2">
                 <span><strong>ΥΠΟΛΟΙΠΟ ΗΜΕΡΩΝ:</strong></span>
                 <select class="form-select days" id="days" aria-label="Υπόλοιπο Ημερών Μήνα">
                     <option selected value="0">0</option>
@@ -213,11 +210,14 @@
                     <option value="30">30</option>
                 </select>
             </div>
-        </div>
-        <div class="row gx-5">
-            <div class="col p-3">
+            <div class="col-md-3 p-2">
+                <input type="checkbox" class="first_choice" id="first_choice" name="first_choice" value="0"><label for="first_choice" class="first_choice">ΠΡΩΤΗ ΕΠΙΛΟΓΗ ΜΕΤΑΘΕΣΗΣ</label>
             </div>
         </div>
+        <!--<div class="row gx-5">-->
+        <!--    <div class="col p-3">-->
+        <!--    </div>-->
+        <!--</div>-->
         
         <div class="row bg-light p-2">
             <div class="col">
@@ -229,7 +229,7 @@
     
     <div class="container-fluid gx-5 p-3" id="credits">
         <div class="row gx-5 bg-light d-flex justify-content-between">
-            <div class="col-sm-10 p-3">
+            <div class="col-sm-8 p-3">
                 <p>Developed with ❤️ by <a href="https://www.facebook.com/giannis.giftakis" target="_blank">Ιωάννης Γυφτάκης (ΠΕ86 Πληροφορικής)</a></p>
                 <p>special thanks to <a href="https://swiy.co/savvas-pinakes" target="_blank">Σάββας Παπαδόπουλος (ΠΕ86)</a></p>
             </div>
@@ -238,14 +238,21 @@
                 </button>
                 <!--<button type="button" class="btn btn-secondary" id="test">TEST</button>-->
             </div>
+            <div class="col-sm-2 p-1">
+                <a href="https://www.youtube.com/watch?v=zzEPLxiqXyc" target="_blank">Οδηγός Χρήσης</a>
+            </div>
         </div>
     </div>
     
     
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/html2canvas.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!--<script src="assets/js/html2canvas.js"></script>-->
+    <!--<script src="assets/js/canvas2image.js"></script>-->
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>-->
+    
+    
     
     <script>
         $(document).ready(function(){
@@ -260,7 +267,7 @@
             // creating dropdown of years dynamically (current year until 35 years before)
             $("#school_year").append('<option selected value="' + year + '">' + year + '</option>');
             for (var index = 1; index <= 35; index++) {
-                tmp_year = year - index
+                tmp_year = year - index;
                 $('#school_year').append('<option value="' + tmp_year + '">' + tmp_year + '</option>');
             }
             
@@ -280,8 +287,9 @@
                     }
                 });
                 
-                // intiallizing school_total_moria to 0 when a schools is cloned
+                // Αρχικοποίηση της school_total_moria σε 0 όταν κλωνοποιούμε σχολείο
                 $(".school").find("#school_total_moria").last().text("0");
+                $(".school").find("#first_choice").last().prop("checked", false);
                 
                 // scroll to bottom when a school is cloned
                 $(document).scrollTop($(document).height());
@@ -311,7 +319,7 @@
             
             
             // Calculating Moria in every change on below DOM elements 
-            $(document).on("change", "#months,#days,#school_points,#hours_start,#hours_end,.school_total_moria,input[type='checkbox'],input[type='text'],.when_diorismos,#paidia", function(event) {
+            $(document).on("change", "#months,#days,#school_points,#hours_start,#hours_end,.school_total_moria,input[type='checkbox'],input[type='text'],#when_diorismos,select[name='when_diorismos'],#paidia", function(event) {
  
                 // let div_school_uid = $(this).closest(".school").attr('id');
                 
@@ -363,7 +371,7 @@
                     
                     // set default 10 months when dropdown changed to ΑΝΑΠΛΗΡΩΤΗΣ
                     if (months > 10) {
-                        months_elem.val("10");
+                        months_elem.val(10);
                     }
                 } 
                 if (when_diorismos_elem.val() == "ΜΟΝΙΜΟΣ") {
@@ -433,14 +441,6 @@
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             });
-            
-            // $("#credits").on("click", function(event){
-            //     //html2canvas
-            //     html2canvas(document.querySelector(".school")).then(canvas => {
-            //         document.body.appendChild(canvas)
-            //     });
-            // });
-                        
             
             
         });
